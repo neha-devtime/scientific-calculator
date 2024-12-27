@@ -9,35 +9,25 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <style>
-        textarea::-webkit-scrollbar {
-            width: 8px; 
+        textarea.ta-1::-webkit-scrollbar {
+            width: 6px;
         }
-    
-        textarea::-webkit-scrollbar-thumb {
-            background-color: #888; 
-            border-radius: 10px; 
+
+        textarea.ta-1::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 10px;
         }
-    
-        textarea::-webkit-scrollbar-thumb:hover {
-            background-color: #555; 
-        }
-        textarea {
-        resize: both; 
-        -webkit-appearance: none; 
-        -moz-appearance: none; 
-        }
-    
-        
-        textarea::-webkit-resizer {
-            display: none; 
+
+        textarea.ta-1::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
         }
     </style>
-    
+
 </head>
 
 <body>
 
-    <div class="grid place-items-center h-screen">
+    <!-- <div class="grid place-items-center h-screen">
         <div class="  my-10 bg-[#f1f1f1] w-[300px] sm:w-[500px] h-auto pb-1">
            <div class="mt-6 mx-4 ">
             <textarea  class="w-full h-10 text-lg border border-black text-right overflow-y-auto rounded-lg py-2 px-2 resize" readonly>3.00+6 10 22 </textarea>
@@ -110,9 +100,128 @@
         </div>
         
        
+    </div> -->
+
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="my-10 bg-[#f1f1f1] w-[90%] max-w-[500px] h-auto pb-1 rounded-lg shadow-md">
+            <!-- Display Section -->
+            <div class="mt-6 mx-4 relative">
+                <i class="fas fa-history absolute top-2 left-2 text-sm text-gray-600 hover:text-black"></i>
+                <textarea id="message" rows="1"
+                    class=" ta-1 p-2.5 w-full text-sm text-right text-gray-900 bg-gray-50 rounded-lg border border-gray-300 outline-none resize-y min-h-[2.25rem] max-h-[10rem] overflow-auto"
+                    readonly>10</textarea>
+            </div>
+
+            <!-- input section -->
+            <div class="mt-5 mx-4">
+                <textarea id="restricted-textarea" rows="2"
+                    class="w-full text-3xl font-medium text-right overflow-auto rounded-lg py-2 px-2 focus:ring-blue-500 focus:border-blue-500 resize-none"></textarea>
+            </div>
+            <div class="mt-8 mx-4">
+                <p class="text-gray-500 text-xl">Memory:</p>
+            </div>
+
+            <!-- Memory Buttons -->
+            <div class="mt-2 mx-1 grid grid-cols-5 gap-3 text-center sm:px-4 mb-2 relative">
+                <div class="py-2 text-black hover:text-stone-400 text-center font-bold text-xl">DEG</div>
+                <div class="py-2 text-black hover:text-stone-400 font-bold text-center text-xl">F-E</div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="py-2 text-[#9c9895] hover:text-black text-center font-bold text-xl">MC</div>
+                <div class="py-2 text-[#9c9895] hover:text-black font-bold text-center text-xl">MR</div>
+                <div class="py-2 text-black hover:text-stone-400 text-center font-bold text-xl">M+</div>
+                <div class="py-2 text-black hover:text-stone-400 font-bold text-xl">M-</div>
+                <div class="py-2 text-black hover:text-stone-400 text-center font-bold text-xl">MS</div>
+                <div class="col-span-2 group hover:bg-[#d3d4d5] ">
+                    <button class="p-1 sm:p-3 text-gray-700 hover:bg-[#d3d4d5] hover:text-black">
+                        △ <span class="text-sm sm:text-lg ">Trigonometry</span>
+                    </button>
+
+                    <div class="sm:mx-4 group-hover:block hidden absolute top-full left-0 w-[72%] drop-shadow-lg z-10 bg-[#91c1e7]">
+                        <div class="grid grid-cols-4  text-white font-medium text-lg sm:Ltext-xl">
+                            <div class="col-span-2 text-center hover:bg-sky-200 p-5 hover:text-gray-700">sin(x)</div>
+                            <div class="col-span-2 text-center hover:bg-sky-200 p-5 hover:text-gray-700">sin <sup>-1</sup>(X)</div>
+                            <div class="col-span-2 text-center hover:bg-sky-200 p-5 hover:text-gray-700">cos</div>
+                            <div class="col-span-2 text-center hover:bg-sky-200 p-5 hover:text-gray-700">cos <sup>-1</sup>(X)</div>
+                            <div class="col-span-2 text-center hover:bg-sky-200 p-5 hover:text-gray-700">tan</div>
+                            <div class="col-span-2 text-center hover:bg-sky-200 p-5 hover:text-gray-700">tan <sup>-1</sup>(X)</div>
+                        </div>
+                    </div>
+                </div >
+                <div class="col-span-2 group hover:bg-[#d3d4d5] relative">
+                    <button class="p-1 sm:p-3 text-gray-700 hover:text-black">
+                        ƒ <span class="text-sm sm:text-lg ml-1">Function</span>
+                    </button>
+                    <div class=" group-hover:block hidden absolute top-full left-0 w-[105%] drop-shadow-lg z-10 bg-[#91c1e7]">
+                        <div class="grid grid-cols-1  text-white font-medium text-xl">
+                            <div class="text-center hover:bg-sky-200 p-5 hover:text-gray-700">abs(x)</div>
+                            <div class="text-center hover:bg-sky-200 p-5 hover:text-gray-700">floor(x)</div>
+                            <div class="text-center hover:bg-sky-200 p-5 hover:text-gray-700">ceil(x)</div>
+                            
+                        </div>
+                    </div>
+                </div >
+            </div>
+
+            <!-- Main Buttons -->
+            <div class="mt-4 mx-1 grid grid-cols-5 gap-3 text-center">
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl shadow-sm">2<sup>nd</sup></button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl shadow-sm">π</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl shadow-sm">e</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-[#91c1e7] hover:drop-shadow-md hover:font-medium text-black rounded-md text-2xl shadow-sm">C</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-[#91c1e7] hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl">
+                    <i class="fas fa-backspace "></i>
+                </button>
+
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-lg shadow-sm">X<sup>2</sup></button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-lg shadow-sm">1/X</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl shadow-sm">| x |</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-medium text-black rounded-md text-xl shadow-sm">exp</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-medium text-black rounded-md text-xl shadow-sm">mod</button>
+ 
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl shadow-sm">√</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl shadow-sm">(</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl shadow-sm">)</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl shadow-sm">n!</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-medium text-black rounded-md text-3xl shadow-sm">÷</button>
+
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl shadow-sm">x<sup>y</sup></button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl font-semibold shadow-sm">7</button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl font-semibold shadow-sm">8</button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold     text-black rounded-md text-xl font-semibold shadow-sm">9</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-2xl font-medium shadow-sm">x</button>
+
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl shadow-sm">10<sup>x</sup></button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl font-semibold shadow-sm">4</button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl font-semibold shadow-sm">5</button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl font-semibold shadow-sm">6</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl font-medium shadow-sm">—</button>
+
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-medium text-black rounded-md text-xl">log</button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl font-semibold shadow-sm">1</button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl font-semibold shadow-sm">2</button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-bold text-black rounded-md text-xl font-semibold shadow-sm">3</button>
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-bold text-black rounded-md text-xl font-semibold shadow-sm">＋</button>
+
+                <button class="py-3 bg-[#f4f4f5] hover:bg-gray-200 hover:drop-shadow-md hover:font-medium text-black rounded-md text-xl">ln</button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl font-semibold shadow-sm">+/-</button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl font-semibold shadow-sm">0</button>
+                <button class="py-3 bg-white     hover:bg-gray-200 hover:drop-shadow-md hover:font-semibold text-black rounded-md text-xl font-semibold shadow-sm">.</button>
+                <button class="py-3 bg-[#91c1e7] hover:text-black hover:drop-shadow-md hover:font-semibold text-white rounded-md text-xl font-medium shadow-sm">＝</button>
+            </div>
+        </div>
     </div>
+    <script>
+        const textarea = document.getElementById('restricted-textarea');
+
+        textarea.addEventListener('input', () => {
+            // Replace any alphabetic characters with an empty string
+            textarea.value = textarea.value.replace(/[a-zA-Z]/g, '');
+        });
 
 
-
+    </script>
 </body>
+
 </html>
