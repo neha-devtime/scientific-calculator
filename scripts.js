@@ -17,14 +17,13 @@ let memory = 0;
 
 // appendFunction
 function appendFunction(value) {
-    if(result === ""){
+    if (result === "") {
         display.value += value;
-    }else{
+    } else {
         display.value = value;
         result = "";
     }
 }
-
 //clear
 function clearDisplay() {
     display.value = '';
@@ -56,23 +55,26 @@ function updateHistory() {
     });
 }
 
+
 function calculate() {
     try {
         result = math.evaluate(display.value);
         
-        historyList.unshift(display.value + ' = ' + result); 
+        historyList.unshift(display.value + ' = ' + result);
         if (historyList.length > 5) {
             historyList.pop(); 
         }
-        history.value = historyList.join('\n'); 
+        history.value = historyList.join('\n');
         display.value = result; 
     } catch (error) {
-        display.value = 'Error';
+        display.value = 'Invalid';
     }
 }
 
 document.addEventListener('keydown', function (e) {
     if (e.key === "=" || e.key === "Enter") {
+        e.preventDefault(); 
+        console.log(e);
         calculate();
     }
 });
