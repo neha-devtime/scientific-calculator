@@ -61,13 +61,13 @@ function calculate() {
         result = math.evaluate(display.value);
         
         historyList.unshift(display.value + ' = ' + result);
-        if (historyList.length > 5) {
+        if (historyList.length > 10) {
             historyList.pop(); 
         }
         history.value = historyList.join('\n');
         display.value = result; 
     } catch (error) {
-        display.value = 'Invalid';
+        display.value = 'Error';
     }
 }
 
