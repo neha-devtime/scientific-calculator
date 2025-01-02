@@ -3,7 +3,7 @@ let expression = '';
 let history = [];
 let memory = 0;
 let degreeMode = true;
-let scientificMode = false;     
+let scientificMode = false;
 
 function appendFunction(value) {
     expression += value;
@@ -14,7 +14,7 @@ function calculate() {
     try {
         result = calculateExpression(expression);
         document.getElementById('display').value = result;
-        history.unshift(expression + ' = ' + result); 
+        history.unshift(expression + ' = ' + result);
         if (history.length > 5) {
             history.pop();
         }
@@ -27,7 +27,7 @@ function calculate() {
 }
 
 function calculateExpression(expr) {
-    
+
 
     expr = expr.replace(/ceil\(([^)]+)\)/g, (_, val) => Math.ceil(parseFloat(val)));
     expr = expr.replace(/exp\(([^)]+)\)/g, (_, val) => Math.exp(parseFloat(val)));
@@ -43,7 +43,7 @@ function calculateExpression(expr) {
 
     expr = expr.replace(/pow\(([^,]+),([^)]+)\)/g, 'Math.pow($1,$2)');
     expr = expr.replace(/\^2/g, '**2');
-    expr = expr.replace(/\^/g, '**');   
+    expr = expr.replace(/\^/g, '**');
     expr = expr.replace(/factorial\(([^)]+)\)/g, (_, val) => factorial(parseInt(val)));
 
     expr = expr.replace(/sin\(([^)]+)\)/g, (_, val) => degreeMode ? Math.sin(degToRad(val)) : Math.sin(val));
@@ -56,10 +56,10 @@ function calculateExpression(expr) {
     console.log(expr);
 
     return Function('return ' + expr)();
- 
+
 }
 
-function radToDeg(rad) {        
+function radToDeg(rad) {
     return rad * (180 / Math.PI);
 }
 
@@ -91,13 +91,13 @@ function backspace() {
 
 function memoryAdd() {
     let currentValue = parseFloat(document.getElementById('display').value) || 0;
-    memory += currentValue; 
-    alert(`Added to memory: ${currentValue}`);              
+    memory += currentValue;
+    alert(`Added to memory: ${currentValue}`);
 }
 
 function memorySubtract() {
     let currentValue = parseFloat(document.getElementById('display').value) || 0;
-    memory -= currentValue; 
+    memory -= currentValue;
     alert(`Subtracted from memory: ${currentValue}`);
 }
 
@@ -126,28 +126,28 @@ function toggleScientificMode() {
 }
 
 document.addEventListener('keydown', function (e) {
-if (e.key === "=" || e.key === "Enter") {
-    e.preventDefault();
-    calculate();
-} else if (e.key === "m" || e.key === "M") { // recall on 'M' key
-    memoryRecall();
-} else if (e.key === "s" || e.key === "S") { // store on 'S' key
-    memoryStore();
-} else if (e.key === "a" || e.key === "A") { // add on 'A' key
-    memoryAdd();
-} else if (e.key === "d" || e.key === "D") { // subtract on 'D' key
-    memorySubtract();
-} else if (e.key === "Backspace") {
-    e.preventDefault();
-    if (expression.length > 0) {
-        backspace();
+    if (e.key === "=" || e.key === "Enter") {
+        e.preventDefault();
+        calculate();
+    } else if (e.key === "m" || e.key === "M") { // recall on 'M' key
+        memoryRecall();
+    } else if (e.key === "s" || e.key === "S") { // store on 'S' key
+        memoryStore();
+    } else if (e.key === "a" || e.key === "A") { // add on 'A' key
+        memoryAdd();
+    } else if (e.key === "d" || e.key === "D") { // subtract on 'D' key
+        memorySubtract();
+    } else if (e.key === "Backspace") {
+        e.preventDefault();
+        if (expression.length > 0) {
+            backspace();
+        }
+    } else if (e.key.length === 1) {
+        e.preventDefault();
+        appendFunction(e.key);
     }
-} else if (e.key.length === 1) {
-    e.preventDefault();
-    appendFunction(e.key);
-}
 
-document.getElementById('display').value = expression;
+    document.getElementById('display').value = expression;
 });
 
 
@@ -188,5 +188,5 @@ confirmBtn.addEventListener('click', () => {
 
     history = [];
     historyTextarea.value = '';
-   confirmationModal.classList.add('hidden');
+    confirmationModal.classList.add('hidden');
 });
