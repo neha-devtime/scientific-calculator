@@ -26,7 +26,7 @@ This is an online javascript scientific calculator, designed and coded by [Neha 
 2. **Enter Expression**: Input mathematical expressions directly using the provided buttons.
 3. **Calculate**: Click on the "equals" button (`=`) to evaluate the expression.
 4. **Clear Expression**: Click on the "Clear" button (`C`) to clear the current expression.
-5. **Clear History**: Click on the "History icon  <i class="fas fa-history></i>" for clear History.
+5. **Clear History**: Click on the "History icon  <i class="fas fa-history"></i>" for clear History.
 ### Contribution
 
 If you want to contribute to this project, feel free to fork the repository and submit a pull request. Bug fixes and feature suggestions are always welcome.
