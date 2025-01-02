@@ -1,4 +1,3 @@
-
 let result = '';
 let expression = '';
 let history = [];
@@ -20,7 +19,7 @@ function calculate() {
             history.pop();
         }
         document.getElementById('history').value = history.join('\n');
-        expression = '';
+        expression = result.toString();
     } catch (e) {
         document.getElementById('display').value = 'Error';
         expression = '';
@@ -83,9 +82,12 @@ function clearEntry() {
 }
 
 function backspace() {
-    expression = expression.slice(0, -1);
+    if (expression.length > 0) {
+        expression = expression.slice(0, -1);
+    }
     document.getElementById('display').value = expression;
 }
+
 
 function memoryAdd() {
     let currentValue = parseFloat(document.getElementById('display').value) || 0;
@@ -124,25 +126,30 @@ function toggleScientificMode() {
 }
 
 document.addEventListener('keydown', function (e) {
-    if (e.key === "=" || e.key === "Enter") {
-        e.preventDefault();
-        calculate();
-    } else if (e.key === "m" || e.key === "M") { //  recall on 'M' key
-        memoryRecall();
-    } else if (e.key === "s" || e.key === "S") { //  store on 'S' key
-        memoryStore();
-    } else if (e.key === "a" || e.key === "A") { //  add on 'A' key
-        memoryAdd();
-    } else if (e.key === "d" || e.key === "D") { //  subtract on 'D' key
-        memorySubtract();
-    } else if(e.key.length === 1){
-        e.preventDefault();
-        appendFunction(e.key);
-    }
-    else if(e.key === "BackSpace"){
+if (e.key === "=" || e.key === "Enter") {
+    e.preventDefault();
+    calculate();
+} else if (e.key === "m" || e.key === "M") { // recall on 'M' key
+    memoryRecall();
+} else if (e.key === "s" || e.key === "S") { // store on 'S' key
+    memoryStore();
+} else if (e.key === "a" || e.key === "A") { // add on 'A' key
+    memoryAdd();
+} else if (e.key === "d" || e.key === "D") { // subtract on 'D' key
+    memorySubtract();
+} else if (e.key === "Backspace") {
+    e.preventDefault();
+    if (expression.length > 0) {
         backspace();
     }
+} else if (e.key.length === 1) {
+    e.preventDefault();
+    appendFunction(e.key);
+}
+
+document.getElementById('display').value = expression;
 });
+
 
 const historyIcon = document.getElementById('history-icon');
 const popup = document.getElementById('popup');
