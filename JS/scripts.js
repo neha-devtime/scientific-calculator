@@ -1,3 +1,5 @@
+
+
 let result = '';
 let expression = '';
 let history = [];
@@ -26,9 +28,19 @@ function calculate() {
     }
 }
 
+// expressions
 function calculateExpression(expr) {
 
+    //trigonometric functions 
+    expr = expr.replace(/asin\(([^)]+)\)/g, (_, val) => degreeMode ? radToDeg(Math.asin(parseFloat(val))) : Math.asin(parseFloat(val)));
+    expr = expr.replace(/acos\(([^)]+)\)/g, (_, val) => degreeMode ? radToDeg(Math.acos(parseFloat(val))) : Math.acos(parseFloat(val)));
+    expr = expr.replace(/atan\(([^)]+)\)/g, (_, val) => degreeMode ? radToDeg(Math.atan(parseFloat(val))) : Math.atan(parseFloat(val)));
 
+    expr = expr.replace(/sin\(([^)]+)\)/g, (_, val) => degreeMode ? Math.sin(degToRad(val)) : Math.sin(val));
+    expr = expr.replace(/cos\(([^)]+)\)/g, (_, val) => degreeMode ? Math.cos(degToRad(val)) : Math.cos(val));
+    expr = expr.replace(/tan\(([^)]+)\)/g, (_, val) => degreeMode ? Math.tan(degToRad(val)) : Math.tan(val));
+
+    //Additional expressions 
     expr = expr.replace(/ceil\(([^)]+)\)/g, (_, val) => Math.ceil(parseFloat(val)));
     expr = expr.replace(/exp\(([^)]+)\)/g, (_, val) => Math.exp(parseFloat(val)));
     expr = expr.replace(/pi/g, Math.PI);
@@ -40,33 +52,27 @@ function calculateExpression(expr) {
     expr = expr.replace(/log\(([^)]+)\)/g, (_, val) => Math.log(parseFloat(val)));
     expr = expr.replace(/floor\(([^)]+)\)/g, (_, val) => Math.floor(parseFloat(val)));
 
-
     expr = expr.replace(/pow\(([^,]+),([^)]+)\)/g, 'Math.pow($1,$2)');
     expr = expr.replace(/\^2/g, '**2');
     expr = expr.replace(/\^/g, '**');
     expr = expr.replace(/factorial\(([^)]+)\)/g, (_, val) => factorial(parseInt(val)));
 
-    expr = expr.replace(/sin\(([^)]+)\)/g, (_, val) => degreeMode ? Math.sin(degToRad(val)) : Math.sin(val));
-    expr = expr.replace(/cos\(([^)]+)\)/g, (_, val) => degreeMode ? Math.cos(degToRad(val)) : Math.cos(val));
-    expr = expr.replace(/tan\(([^)]+)\)/g, (_, val) => degreeMode ? Math.tan(degToRad(val)) : Math.tan(val));
-
-    expr = expr.replace(/acos\(([^)]+)\)/g, (_, val) => degreeMode ? Math.acos(degToRad(val)) : Math.acos(val));
-    expr = expr.replace(/atan\(([^)]+)\)/g, (_, val) => degreeMode ? Math.atan(degToRad(val)) : Math.atan(val));
-    expr = expr.replace(/asin\(([^)]+)\)/g, (_, val) => degreeMode ? Math.asin(degToRad(val)) : Math.asin(val));
     console.log(expr);
 
     return Function('return ' + expr)();
-
 }
 
+//radian to degree
 function radToDeg(rad) {
     return rad * (180 / Math.PI);
 }
 
+//degree to radian
 function degToRad(deg) {
     return deg * (Math.PI / 180);
 }
 
+//factorial
 function factorial(n) {
     if (n === 0) return 1;
     let result = 1;
@@ -76,11 +82,13 @@ function factorial(n) {
     return result;
 }
 
+//C
 function clearEntry() {
     expression = '';
     document.getElementById('display').value = '';
 }
 
+//backspace
 function backspace() {
     if (expression.length > 0) {
         expression = expression.slice(0, -1);
@@ -88,7 +96,7 @@ function backspace() {
     document.getElementById('display').value = expression;
 }
 
-
+//memory functions 
 function memoryAdd() {
     let currentValue = parseFloat(document.getElementById('display').value) || 0;
     memory += currentValue;
@@ -115,6 +123,7 @@ function memoryStore() {
     alert(`Memory stored: ${memory}`);
 }
 
+//changing mode
 function toggleDegreeMode() {
     degreeMode = !degreeMode;
     document.getElementById('display').value = degreeMode ? 'Degree Mode' : 'Radian Mode';
@@ -125,6 +134,7 @@ function toggleScientificMode() {
     document.getElementById('display').value = scientificMode ? 'Scientific Mode' : 'Standard Mode';
 }
 
+//key press events
 document.addEventListener('keydown', function (e) {
     if (e.key === "=" || e.key === "Enter") {
         e.preventDefault();
@@ -150,7 +160,7 @@ document.addEventListener('keydown', function (e) {
     document.getElementById('display').value = expression;
 });
 
-
+//clear history model
 const historyIcon = document.getElementById('history-icon');
 const popup = document.getElementById('popup');
 const clearHistoryBtn = document.getElementById('clear-history-btn');
