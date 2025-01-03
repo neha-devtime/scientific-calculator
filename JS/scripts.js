@@ -7,6 +7,7 @@ let memory = 0;
 let degreeMode = true;
 let scientificMode = false;
 
+
 function appendFunction(value) {
     expression += value;
     document.getElementById('display').value = expression;
@@ -134,19 +135,37 @@ function toggleScientificMode() {
     document.getElementById('display').value = scientificMode ? 'Scientific Mode' : 'Standard Mode';
 }
 
-//key press events
+
+const display = document.getElementById('display');
+
+
+display.addEventListener('input', () => {
+    display.value = display.value.replace(/[^0-9+\-*/().%^√! ]/g, '');
+    expression = display.value;
+});
+
+// Key press event handlin
 document.addEventListener('keydown', function (e) {
+    
+    if (e.ctrlKey || e.altKey || e.metaKey) {
+
+        return;
+    }
+    const allowedKeys = [
+        'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', '=', '.', '(', ')',
+        '+', '-', '*', '/', '%', '^', '!', 
+        ...Array.from({ length: 10 }, (_, i) => i.toString()), 
+    ];
+
+    // Check if the key is allowed
+    if (!allowedKeys.includes(e.key)) {
+        e.preventDefault();
+        return;
+    }
+
     if (e.key === "=" || e.key === "Enter") {
         e.preventDefault();
         calculate();
-    } else if (e.key === "m" || e.key === "M") { // recall on 'M' key
-        memoryRecall();
-    } else if (e.key === "s" || e.key === "S") { // store on 'S' key
-        memoryStore();
-    } else if (e.key === "a" || e.key === "A") { // add on 'A' key
-        memoryAdd();
-    } else if (e.key === "d" || e.key === "D") { // subtract on 'D' key
-        memorySubtract();
     } else if (e.key === "Backspace") {
         e.preventDefault();
         if (expression.length > 0) {
@@ -157,8 +176,9 @@ document.addEventListener('keydown', function (e) {
         appendFunction(e.key);
     }
 
-    document.getElementById('display').value = expression;
+    display.value = expression; 
 });
+
 
 //clear history model
 const historyIcon = document.getElementById('history-icon');
